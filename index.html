@@ -1,0 +1,118 @@
+<!doctype html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nbnsucks.com/" />
+  <meta property="og:title" content="NBN sucks, but your internet shouldn't." />
+  <meta property="og:description" content="HFC stands for 'Hardly Fucking Connected' not 'Hybrid Fibre Coaxial' like NBN would like to have you believe" />
+  <meta property="og:image" content="nbnsucks.jpg" />
+  <meta property="fb:app_id" content="1688168131314242" />
+  <meta property="fb:admins" content="100043570743736"/>
+  <title>NBN sucks, but your internet shouldn't.</title>
+  <base href="./">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+	body {
+	  background-color: #F5F5F5;
+	  animation: pulse 5s infinite;
+	  animation-direction: alternate;
+	}
+	@keyframes pulse {
+	  0% {
+		background-color: #005BD6;
+	  }
+	  100% {
+		background-color: #F17D35;
+	  }
+	}
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151871883-1"></script>
+  <script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-151871883-1');
+  </script>
+</head>
+<body>
+	<script>
+	  window.fbAsyncInit = function() {
+		FB.init({
+		  appId            : '1688168131314242',
+		  autoLogAppEvents : true,
+		  xfbml            : true,
+		  version          : 'v5.0'
+		});
+	  };
+	</script>
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+
+	<div class="container">
+		<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+			<h1 class="display-4 font-weight-normal">NBN sucks</h1>
+			<p class="lead font-weight-normal">But your internet shouldn't.</p>
+		</div>
+		
+		<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-left bg-light">
+			<p>
+				HFC is the technology predominantly used by NBN to connect Australians to the internet in metro areas.
+				It's exactly the same infastructure used by Telstra Cable and Foxtel.
+				Bought by NBN from Telstra for $11 billion and Optus for $800 million and used instead of replacing this aging and rusting infastructure with Fibre to the Premise (FFTP) like the government initially promised.
+				HFC is an outdated and failing cable infastructure.
+				Foxtel customers are being <a href="https://mumbrella.com.au/foxtel-to-move-to-satellite-delivery-505165">moved from the HFC network they sold to NBN to satellite because it's more reliable than HFC</a>.
+			</p>
+			<p>
+				Because NBN HFC is sharing the same HFC network with Telstra Cable and Foxtel, it's forced to use less optimal and noisy frequencies that are more prone to connection disruptions.
+				So if you're still with Telstra Cable - don't move until you have to! In addition to being more reliable, Telstra Cable customers report a drop off in speed from 115mbps to 90mbps when they move to NBN.
+				When the Telstra Cable/Foxtel/NBN coexistence period ends, with any luck speeds and reliability will get better.
+			</p>
+			<p>
+				Unfortunately for now though, HFC stands for "Hardly Fucking Connected" not "Hybrid Fibre Coaxial" like NBN would like to have you believe.
+			</p>
+		</div>
+		
+		<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-left bg-light">
+			<p>
+				NBN are focused on building new infastructure, not maintaining their existing HFC network.
+				<em>Unfortunately the biggest disadvantage to HFC over Fibre is it <strong>requires a lot more maintenance.</strong></em>
+				For example, the <a href="https://en.wikipedia.org/wiki/F_connector">f-connectors</a> are very prone to rusting and need to be replaced every couple of years
+				- not to mention all the <a href="https://en.wikipedia.org/wiki/Hybrid_fiber-coaxial#Description">many other components of a HFC network</a> that need to be taken care of.
+				This has been an overall terrible experience for customers - many of whom are getting constant drop outs - but don't know who to contact about it.
+			</p>
+			<p>
+				Your NBN cable modem (Arris CM8200) is connected to a CMTS (Cable Modem Termination System) which keeps a log of every connection disruption.
+				However it's clear NBN aren't monitoring these logs. You shouldn't have to do this, but you can monitor the logs from your cable modem
+				and keep a log of all the drop outs you're experiencing - for more information, see the <a href="hfcmon/">hfcmon tool</a> for example.
+			</p>
+			<p>
+				Instead of NBN already knowing there's a problem, the customer is forced to complain to their RSP (Retail Service Provider)
+				who in the majority of cases doesn't escalate the issue to NBN. Even if the issue is escalated to NBN, the best NBN will do
+				is send out a sub-contractor from a company like Service Stream - who are only trained
+				and authorised to fix tap down issues (issues from the power pole/pit outside your house to the cable modem inside your house).
+				Very rarely this sub-contractor is able to fix your issue. However for most, NBN will keep sending out sub-contractor after sub-contractor who can't actually fix your issue.
+				<em><strong>Ironically if NBN just checked the damn CMTS's logs there wouldn't be a need for any of this.</strong></em>
+			</p>
+			<p>
+				The experience is so bad with NBN, that customers are increasingly opting for DIY fixes.
+				For example, installing their own <a href="https://www.thatcable.com/f-connector-coaxial-cable-variable-attenuator-0-20db-coax-rf-digital-tv-freeview">variable attenuators</a> to try to stablise their HFC connections
+				(read more info <a href="hfcmon/#how-you-can-diagnoise-your-own-connection">here</a>).
+			</p>
+			<p>
+				My wife and I use the <a href="hfcmon/#just-want-to-monitor-internet-stability-dont-have-an-arris-cm8200-cable-modem">hfcmon tool</a> mentioned above to beep when our internet goes up/down.
+				It's really a sad reflection of how bad our internet is that we check whether our internet is up/down before clicking links.
+				NBN sub-contractors keep visiting, performing the same line tests and concluding nothing is wrong - <em><strong>why would anyone stay with NBN when they have such bad service!</em></strong>
+				We're thinking of changing to <a href="https://www.optus.com.au/for-you/broadband-nbn/5g-home-broadband/5g-home-broadband-plan">Optus 5G Broadband</a> - it's cheaper and faster.
+				Alternatively, I'd sign up to a Fibre-To-The-Premises (FTTP) company like <a href="https://www.news.com.au/technology/online/broadband-startup-completes-initial-fibre-rollout-in-parts-of-melbourne/news-story/24ce37c4aa704843abb5b70f5482bcba">DGTek</a> instantly if they moved into our area.
+			</p>
+		</div>
+
+		<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-left bg-light">
+			<div class="fb-comments" data-href="https://nbnsucks.com/" data-width="100%" data-numposts="100" data-order-by="reverse_time"></div>
+		</div>
+	</div>
+</body>
+</html>
