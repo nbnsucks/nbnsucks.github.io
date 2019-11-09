@@ -1,6 +1,4 @@
 
-Original URL of this page: [https://github.com/nbnsucks/hfcmon](https://github.com/nbnsucks/hfcmon)
-
 Discussion forum
 ---------------------------------------------------------
 
@@ -9,6 +7,13 @@ Feel free to leave a Facebook comment on [nbnsucks.com](https://nbnsucks.com/) o
 Alternatively, good forums to discuss your HFC issues are;
 - [HFC Network - General Discussion](https://forums.whirlpool.net.au/thread/9271vnm3?p=-1)
 - [NBN HFC Arris modem status page](https://forums.whirlpool.net.au/thread/90ym1z23?p=-1)
+
+How to contribute
+---------------------------------------------------------
+
+If you want to contribute to this website, feel free to fork [the webpage](https://github.com/nbnsucks/nbnsucks.github.io) and send me pull requests.
+
+If you want to contribute to hfcmon, feel free to fork [hfcmon](https://github.com/nbnsucks/hfcmon) and send me pull requests.
 
 HFC Overview
 =========================================================
@@ -60,6 +65,7 @@ How you can diagnoise your own connection
   - *Downstream SNR (Signal-to-noise ratio)*: +35dB and above is good, with +40dBmV and above being better.
   - *Upstream Power*: between +40dBmV to 54dBmV is good with closer to 40dBmV is better.
   - *Uncorrectables*: Should be as close to 0 as possible. In my own case, where I'm getting a lot of packet loss and drop outs, I often also see a high number of uncorrectables across all downstream channels.
+  - Lots more useful information [here](https://pickmymodem.com/signal-levels-docsis-3-03-1-cable-modem/).
 
 3. If your power/SNR values are completely wrong, you've got clear evidence that there's something wrong with your HFC connection and that an NBN technician should be sent out **immediately** to resolve this.
 
@@ -67,6 +73,24 @@ How you can diagnoise your own connection
     If your power/SNR are acceptable and you've still got issues, it implies there's an *"up tap"* issue between your tap and the CMTS.
     You can see these issues very clearly if you have access to your cable modems event log (details below on how to do this).
     The most likely issue you'll see is a ["T3 time-out"](https://www.google.com/search?q=DOCSIS+T3+timeout) issue.
+
+Attenuators
+---------------------------------------------------------
+
+An NBN technician will occassionally install a 3dB or 6dB [attenuator](https://en.wikipedia.org/wiki/Attenuator_(electronics)).
+They'll either install this in the network isolator box (grey box on wall outside house) or sometimes just plug it directly into the back of the cable modem.
+
+An attenuator is an electronic device that reduces the power of a signal without appreciably distorting its waveform.
+They're a way of resolving ghosting and reflections caused by too higher signal strength.
+The aim of installing an attenuator is to reduce your downstream power levels so they're in spec as discussed above or [here](https://pickmymodem.com/signal-levels-docsis-3-03-1-cable-modem/).
+
+The official NBN attenuators seem to be: [Digitek Attenuators F Type - 3dB (part number 08AF03) or 6dB (part number 08AF06)](http://au.digitek.tv/index.php?page=shop.product_details&category_id=87&flypage=shop.flypageDIGI&product_id=289&option=com_virtuemart&Itemid=1).
+I think you can purchase them through [radioparts.com.au](https://www.radioparts.com.au/contact-us), but I'm not sure.
+Alternatively, something like <a href="https://www.thatcable.com/f-connector-coaxial-cable-variable-attenuator-0-20db-coax-rf-digital-tv-freeview">variable attenuators</a> might give you more flexibility.
+If nothing else, next time your NBN technician visits just ask for a 3dB attenuator even if you don't need it - it might come in handy later!
+
+The reality is you shouldn't install an attenuator yourself and they should only be installed by an authorised NBN technician.
+However if you're keen, there's really no harm in playing around with adding an attenuator if you want to see what it does - the worst that will happen is you'll figure out you need to unplug it!
 
 Why does my cable modem restart all by itself?
 ---------------------------------------------------------
