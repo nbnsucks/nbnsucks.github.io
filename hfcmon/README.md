@@ -162,8 +162,9 @@ If you want to connect via your router - you've got two options;
 1. Be able to run the above commands on your router *(easier and reliable option!)*. This requires either having a linux/windows server setup as your router/gateway - or having a router with [openwrt](https://www.makeuseof.com/tag/what-is-openwrt-and-why-should-i-use-it-for-my-router/) or similar installed on it; or
 2. Connect very quickly after a hard reset of your cable modem and hope your router hasn't given up trying to figure out the MAC address for `192.168.100.1` and hope your cable modem doesn't reset itself (or you'll have to hard reset again) *(much harder and annoying option that may slowly drive you insane)*.
 
-Recommended extra steps;
-- Add a private WAN network with a static ip address of 192.168.100.2/255.255.255.0 - do *not* specify any gateway or DNS values. *For me, it wouldn't work reliably/at all without this.*
+Other steps you'll need to follow to make the above work;
+- Add a private WAN network with a static ip address of 192.168.100.2/255.255.255.0 - do *not* specify any gateway or DNS values.
+- On [openwrt](https://www.makeuseof.com/tag/what-is-openwrt-and-why-should-i-use-it-for-my-router/), you'll need to run `opkg install ip-full` to install the full ip utility (otherwise you won't be able to run the `ip neighbour ...` commands above).
 - Please make sure your router is secure. For example, if you install [openwrt](https://www.makeuseof.com/tag/what-is-openwrt-and-why-should-i-use-it-for-my-router/), you'll want to make it more secure - very easy to do!
    - On the [Firewall - General Settings](http://192.168.0.1/cgi-bin/luci/admin/network/firewall) tab, by default the firewall is set to REJECT rather than DROP packets (i.e. if you goto [https://www.grc.com/shieldsup](https://www.grc.com/shieldsup) you'll see all your ports are closed instead of stealthed) - so change REJECT to DROP whereever you see it!
    - On the [Firewall - Traffic Rules](http://192.168.0.1/cgi-bin/luci/admin/network/firewall/rules) tab, by default your router is externally pingable - you can fix this and other things, by unchecking every checkbox except "Allow-DHCP-Renew"/"Allow-DHCPv6".
