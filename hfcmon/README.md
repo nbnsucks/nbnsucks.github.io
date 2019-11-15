@@ -85,12 +85,7 @@ They're a way of resolving ghosting and reflections caused by too higher signal 
 The aim of installing an attenuator is to reduce your downstream power levels so they're in spec as discussed above or [here](https://pickmymodem.com/signal-levels-docsis-3-03-1-cable-modem/).
 
 The official NBN attenuators seem to be: [Digitek Attenuators F Type - 3dB (part number 08AF03) or 6dB (part number 08AF06)](http://au.digitek.tv/index.php?page=shop.product_details&category_id=87&flypage=shop.flypageDIGI&product_id=289&option=com_virtuemart&Itemid=1).
-I think you can purchase them through [radioparts.com.au](https://www.radioparts.com.au/contact-us), but I'm not sure.
-Alternatively, something like <a href="https://www.thatcable.com/f-connector-coaxial-cable-variable-attenuator-0-20db-coax-rf-digital-tv-freeview">variable attenuators</a> might give you more flexibility.
-If nothing else, next time your NBN technician visits just ask for a 3dB attenuator even if you don't need it - it might come in handy later!
-
-The reality is you shouldn't install an attenuator yourself and they should only be installed by an authorised NBN technician.
-However if you're keen, there's really no harm in playing around with adding an attenuator if you want to see what it does - the worst that will happen is you'll figure out you need to unplug it!
+You shouldn't install an attenuator yourself - they should only be installed by an authorised NBN technician.
 
 Why does my cable modem restart all by itself?
 ---------------------------------------------------------
@@ -115,12 +110,7 @@ Most people have the following setup;
 
 In order to access your cable modems status page you either need to;
   1. Connect directly to back of `[Arris CM8200 cable modem]` *(easy)*.
-  2. Connect via your router (*advanced and barely worth trying*).
-      - In the majority of cases your `[Router with NAT]` will prevent you from connecting to `http://192.168.100.1`.
-        Some ASUS routers are reported to work. The TP-link routers I've used haven't worked.
-		I installed [openwrt](https://www.makeuseof.com/tag/what-is-openwrt-and-why-should-i-use-it-for-my-router/) which allowed my TP-link router to work.
-	  - Whichever option you choose, you're only likely to be able to very irregularly connect to `http://192.168.100.1` via your gateway.
-        I therefore unfortunately highly recommend people plug directly into their [Arris CM8200 cable modem] (option 1).
+  2. Connect via your router - a little more challenging, but very possible!
 
 The `[Arris CM8200 cable modem]` exposes the webpage `http://192.168.100.1` for a very short 1 to 2 minute window after a hard reset.
 To hard reset the cable modem, press and hold the reset switch on the back of your cable modem.
@@ -133,14 +123,52 @@ This webpage can be used to determine your [OFDM channel width](https://en.wikip
 Why does the Arris CM8200 webpage disappear? And how can we stop this!
 ---------------------------------------------------------
 
-After about 1 to 2 minutes the cable modem, the `192.168.100.1` address disappears (run `arp -a` to see it disappear).
+After about 1 to 2 minutes, the `192.168.100.1` address disappears (run `arp -a` to see it disappear).
+What's happening is the cable modem receives a configuration file from NBN saying that it should no longer advertise the `192.168.100.1` address - however the webserver is still there and running!
 
-This ultimately means you're unable to access the status page that would give you useful information to diagnoise your connection problems.
-I've asked NBN repeatedly if they can modify this configuration file to stop hiding this helpful status page, but I've gotten no response.
+Your cable modem has 2 MAC address;
+  - the MAC address for it's internal interface - *this is the one you need!*. Example: "50:75:f1:00:00:a0".
+  - the MAC address for it's external interface - also called the "Cable Modem MAC Address" or "HFC MAC Address" - it's the MAC address written on the bottom of your cable modem and it's *not* the one you need!. Example: "50:75:f1:00:00:a1".
 
-Thankfully it is possible to keep this webserver active - you just need an application to constantly send requests to it!
-Unfortunately if the cable modem restarts for any reason, or you stop sending requests to it constantly,
-this webserver will disappear after a very short window and you'll need to perform a hard reset of the cable modem to get it back.
+The best way to determine the internal MAC address is to connect directly to the back of your `[Arris CM8200 cable modem]`
+and when you successfully connect to `http://192.168.100.1` after a hard reset - run `arp -a` to get the internal MAC address for `192.168.100.1`.
+In my case, my internal MAC address was one less than my external MAC address (i.e. one less than the MAC address written on the bottom of my cable modem).
+
+*Now you have this you'll never need to hard reset your cable modem again!*
+
+How to reconnect on windows without having to hard reset; (assumes connected to same network, not behind router)
+```
+netsh interface ip delete  neighbors "Local Area Connection" "192.168.100.1"
+arp -a
+...
+(try to connect to http://192.168.100.1 - wait for cable modem to either poison arp table with 00-00-00-00-00-00 or for your OS to give up)
+...
+netsh interface ip add     neighbors "Local Area Connection" "192.168.100.1" 50-75-f1-00-00-a0
+netsh interface ip replace neighbors "Local Area Connection" "192.168.100.1" 50-75-f1-00-00-a0
+```
+
+How to reconnect on linux without having to hard reset; (assumes connected to same network, not behind router - ideally you should run these commands from your router)
+```
+ip neighbour delete 192.168.100.1 dev eth0.2
+ip neighbour show  ;  arp -a
+...
+(try to connect to http://192.168.100.1 - wait for cable modem to either poison arp table with 00-00-00-00-00-00 or for your OS to give up)
+...
+ip neighbour add     192.168.100.1 dev eth0.2 lladdr 50:75:f1:00:00:a0
+ip neighbour replace 192.168.100.1 dev eth0.2 lladdr 50:75:f1:00:00:a0
+```
+
+If you want to connect via your router - you've got two options;
+1. Be able to run the above commands on your router *(easier and reliable option!)*. This requires either having a linux/windows server setup as your router/gateway - or having a router with [openwrt](https://www.makeuseof.com/tag/what-is-openwrt-and-why-should-i-use-it-for-my-router/) or similar installed on it; or
+2. Connect very quickly after a hard reset of your cable modem and hope your router hasn't given up trying to figure out the MAC address for `192.168.100.1` and hope your cable modem doesn't reset itself (or you'll have to hard reset again) *(much harder and annoying option that may slowly drive you insane)*.
+
+Recommended extra steps;
+- Add a private WAN network with a static ip address of 192.168.100.2/255.255.255.0 - do *not* specify any gateway or DNS values. *For me, it wouldn't work reliably/at all without this.*
+- Please make sure your router is secure. For example, if you install [openwrt](https://www.makeuseof.com/tag/what-is-openwrt-and-why-should-i-use-it-for-my-router/), you'll want to make it more secure - very easy to do!
+   - On the [Firewall - General Settings](http://192.168.0.1/cgi-bin/luci/admin/network/firewall) tab, by default the firewall is set to REJECT rather than DROP packets (i.e. if you goto [https://www.grc.com/shieldsup](https://www.grc.com/shieldsup) you'll see all your ports are closed instead of stealthed) - so change REJECT to DROP whereever you see it!
+   - On the [Firewall - Traffic Rules](http://192.168.0.1/cgi-bin/luci/admin/network/firewall/rules) tab, by default your router is externally pingable - you can fix this and other things, by unchecking every checkbox except "Allow-DHCP-Renew"/"Allow-DHCPv6".
+
+After following the above guide, I went from being able to very rarely connect to my `Arris CM8200 cable modem` to always being able to connect *without ever having to do a hard reset*.
 
 HFC Monitor (hfcmon)
 =========================================================
@@ -158,7 +186,7 @@ you'll be able to access the cable modem's status pages at any time - assuming o
 restart - by going to `http://192.168.100.1` in your web-browser.
 
 Prerequisite steps;
-  1. Check you can access `http://192.168.100.1` after performing a hard reset.
+  1. Check you can access `http://192.168.100.1` (see section above for help on how to do this).
      *If you can't access this webpage, this app isn't going to have any better luck.*
   2. Install Java 8 or above;
      - Download from https://www.java.com/en/download/
@@ -167,7 +195,7 @@ Prerequisite steps;
 How to run;
   1. Download [hfcmon.zip](https://nbnsucks.com/hfcmon/hfcmon.zip) and extract.
   2. Open command line and run `"java -jar hfcmon-0.3.jar"`
-  3. Perform hard reset of cable modem - the app will connect to the cable modem as soon as it's available.
+  3. Either fix arp cache or perform hard reset of cable modem (described in previous section) - the app will connect to the cable modem as soon as it's available.
   4. You'll start seeing the log lines like `"Internet connected? Yes. Downstream 6 dBmV/41 dB. Upstream 44 dBmV..."` once successfully connected.
 
 Just want to monitor internet stability? Don't have an Arris CM8200 cable modem?
@@ -282,5 +310,5 @@ Much worse example where internet is down for about 5 minutes, and as a result o
 [WARN |2019-10-27 12:44:08.155|Http] Failed to connect to "http://192.168.100.1"; java.net.SocketTimeoutException: connect timed out
 [WARN |2019-10-27 12:44:10.168|Http] Failed to connect to "http://192.168.100.1"; java.net.SocketTimeoutException: connect timed out
 ...
-(internet connection re-established - but can't connect to cable modem unless you perform a hard reset)
+(internet connection re-established - but can't connect to cable modem unless you fix arp cache or perform a hard reset)
 ```
