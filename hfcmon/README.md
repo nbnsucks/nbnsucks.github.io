@@ -129,6 +129,9 @@ What's happening is the cable modem receives a configuration file from NBN sayin
 Your cable modem has 2 MAC address;
   - the MAC address for it's internal interface - *this is the one you need!*. Example: "50:75:f1:00:00:a0".
   - the MAC address for it's external interface - also called the "Cable Modem MAC Address" or "HFC MAC Address" - it's the MAC address written on the bottom of your cable modem and it's *not* the one you need!. Example: "50:75:f1:00:00:a1".
+Note the first three octects "50:75:f1" - these denote the manufacturer (Arris Group, Inc.).
+They are formally known as the *Organizationally Unique Identifier* - the IEEE has a  [complete list](http://standards-oui.ieee.org/oui.txt).
+On a given modem, both the internal and external interfaces will have the same prefix.
 
 The best way to determine the internal MAC address is to connect directly to the back of your `[Arris CM8200 cable modem]`
 and when you successfully connect to `http://192.168.100.1` after a hard reset - run `arp -a` to get the internal MAC address for `192.168.100.1`.
