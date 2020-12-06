@@ -1,13 +1,13 @@
 
-Welcome to the source code for nbnsucks.com!
+Welcome to the source code for nbnsucks.github.io!
 ======================================
 
-Please visit [nbnsucks.com](https://nbnsucks.com/) to see the live version of this website!
+Please visit [nbnsucks.github.io](https://nbnsucks.github.io/) to see the live version of this website!
 
 Discussion forum
 ---------------------------------------------------------
 
-Feel free to leave a Facebook comment on [nbnsucks.com](https://nbnsucks.com/) or [send me a private message](https://forums.whirlpool.net.au/user/853268).
+Feel free to leave a Facebook comment on [nbnsucks.github.io](https://nbnsucks.github.io/) or [send me a private message](https://forums.whirlpool.net.au/user/853268).
 
 Alternatively, good forums to discuss your HFC issues are;
 - [HFC Network - General Discussion](https://forums.whirlpool.net.au/thread/9271vnm3?p=-1)

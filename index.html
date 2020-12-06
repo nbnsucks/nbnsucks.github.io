@@ -3,12 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nbnsucks.com/" />
+  <meta property="og:url" content="https://nbnsucks.github.io/" />
   <meta property="og:title" content="NBN sucks, but your internet shouldn't." />
   <meta property="og:description" content="HFC stands for 'Hardly Fucking Connected' not 'Hybrid Fibre Coaxial' like NBN would like to have you believe" />
   <meta property="og:image" content="nbnsucks.jpg" />
-  <meta property="fb:app_id" content="1688168131314242" />
-  <meta property="fb:admins" content="100043570743736"/>
   <title>NBN sucks, but your internet shouldn't.</title>
   <base href="./">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,19 +36,6 @@
   </script>
 </head>
 <body>
-	<script>
-	  window.fbAsyncInit = function() {
-		FB.init({
-		  appId            : '1688168131314242',
-		  autoLogAppEvents : true,
-		  xfbml            : true,
-		  version          : 'v5.0'
-		});
-	  };
-	</script>
-	<div id="fb-root"></div>
-	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
-
 	<div class="container">
 		<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
 			<h1 class="display-4 font-weight-normal">NBN sucks</h1>
@@ -88,7 +73,7 @@
 			<p>
 				Your NBN cable modem (Arris CM8200) is connected to a CMTS (Cable Modem Termination System) which keeps a log of every connection disruption.
 				However it's clear NBN aren't monitoring these logs. You shouldn't have to do this, but you can monitor the logs from your cable modem
-				and keep a log of all the drop outs you're experiencing - for more information, see the <a href="hfcmon/">hfcmon tool</a> for example.
+				and keep a log of all the drop outs you're experiencing - for more information, see the <a href="https://github.com/nbnsucks/hfcmon">hfcmon tool</a> for example.
 			</p>
 			<p>
 				Instead of NBN already knowing there's a problem, the customer is forced to complain to their RSP (Retail Service Provider)
@@ -99,7 +84,7 @@
 				<em><strong>Ironically if NBN just checked the damn CMTS's logs there wouldn't be a need for any of this.</strong></em>
 			</p>
 			<p>
-				My wife and I use the <a href="hfcmon/#just-want-to-monitor-internet-stability-dont-have-an-arris-cm8200-cable-modem">hfcmon tool</a> mentioned above to beep when our internet goes up/down.
+				My wife and I use the <a href="https://github.com/nbnsucks/hfcmon/#just-want-to-monitor-internet-stability-dont-have-an-arris-cm8200-cable-modem">hfcmon tool</a> mentioned above to beep when our internet goes up/down.
 				It's really a sad reflection of how bad our internet is that we check whether our internet is up/down before clicking links.
 				NBN sub-contractors keep visiting, performing the same line tests and concluding nothing is wrong - <em><strong>why would anyone stay with NBN when they have such bad service!</em></strong>
 				We're thinking of changing to <a href="https://www.optus.com.au/for-you/broadband-nbn/5g-home-broadband/5g-home-broadband-plan">Optus 5G Broadband</a> - it's cheaper and faster.
@@ -109,7 +94,7 @@
 		
 		<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-left bg-light">
 			<p>
-				Having issues with your NBN HFC connection? <a href="hfcmon/">Here's lots of technical information that might help you</a>.
+				Having issues with your NBN HFC connection? <a href="https://github.com/nbnsucks/hfcmon">Here's lots of technical information that might help you</a>.
 				Unfortunately though you're probably going to have to complain to your RSP (Retail Service Provider) and get them to contact NBN.
 				If nothing gets done, as per the <a href="https://whirlpool.net.au/wiki/NBN_complaint_guide">NBN complaint guide</a>,
 				<a href="https://www.tio.com.au/making-a-complaint">register a complaint with the TIO</a> and notify your RSP of the TIO reference number.
@@ -118,37 +103,7 @@
 		</div>
 
 		<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-left bg-light">
-			<p>
-				Things your council or political member could do to improve their residents internet;
-				<ul>
-					<li><em><strong>Require NBN to label which house is connected to which HFC tap</strong></em> - a majority of residents issues are caused by an NBN sub-contractor not knowing which house is connected to which tap - and repairing the wrong tap (and therefore not actually fixing the residents problem!).
-						In other cases, taps not being labeled has caused NBN technicians to simply unplug existing residents connections, rather then spending the time to properly identify which tap isn't actually being used.
-					</li>
-					<li>Instead of sub-contractors from companies like Service Stream acting as NBN technicians - <em><strong>the local council could provide much more competent and friendlier technicians</strong></em> that work with residents until their issues are fixed.
-					    A current horrible and unfriendly process could be replaced by a substantially better one that generates the council revenue and benefits residents.</li>
-					<li>In line with the ACCC recommendations, <em><strong>encourage competition with NBN</strong></em> not discourage it.
-					    Companies like <a href="https://www.news.com.au/technology/online/broadband-startup-completes-initial-fibre-rollout-in-parts-of-melbourne/news-story/24ce37c4aa704843abb5b70f5482bcba">DGTek</a> should be welcomed
-						- they not only provide better internet for residents, they also provide lots of benefits for the community as a whole such as free internet for schools.
-					</li>
-					<li>If you have an existing TIO ticket that the RSP/NBN hasn't resolved within 2 weeks, the TIO has a 6 week waiting list until a mediator can be appointed.
-						Once a TIO mediator is appointed, they have no authority to speak to NBN directly - this is absolutely absurd.
-						The ombudsman efficiently has no power to resolve NBN disputes - and neither does the customer.
-						<em><strong>The law has to be changed immediately to allow customers with issues with NBN to speak to NBN directly and have the NBN resolve their disputes.</strong></em>
-						I am fed up beyond believe of speaking to my RSP only for them to tell me they're in the process of trying to get a response from NBN.
-						I would highly recommend NBN build an online system to manage this where they can communicate to customers accurately about their issues.
-						RSPs have no technology experience or knowledge to resolve NBN HFC issues - nor should they.
-						<em>The entire process is absurd because after 2 months of bad internet, I'm yet to hear the results of a single technical analysis that NBN has done.</em>
-					</li>
-				</ul>
-			</p>
-			<p>
-				I'm in the process of reaching out to my Federal MP (<a href="https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=LTU">Ged Kearney</a>).
-				I recommend reaching out to your Federal MP and sending them an email <a href="email-template/">like this one</a>.
-			</p>
-		</div>
-
-		<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-left bg-light">
-			<div class="fb-comments" data-href="https://nbnsucks.com/" data-width="100%" data-numposts="100" data-order-by="reverse_time"></div>
+		    More info: <a href="https://github.com/nbnsucks/hfcmon">https://github.com/nbnsucks/hfcmon</a>
 		</div>
 	</div>
 </body>
